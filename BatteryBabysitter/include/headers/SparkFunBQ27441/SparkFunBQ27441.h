@@ -21,7 +21,7 @@ Arduino Uno (any 'duino should do)
 #ifndef SparkFunBQ27441_h
 #define SparkFunBQ27441_h
 
-#include "Arduino.h"
+//#include "Arduino.h"
 #include "BQ27441_Definitions.h"
 
 #define BQ72441_I2C_TIMEOUT 2000

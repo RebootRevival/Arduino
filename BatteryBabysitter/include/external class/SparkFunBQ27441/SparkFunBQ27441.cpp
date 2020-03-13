@@ -17,8 +17,10 @@ SparkFun Battery Babysitter v1.0
 Arduino Uno (any 'duino should do)
 ******************************************************************************/
 
-#include "Arduino.h"
-#include <Wire.h>
+//#include "Arduino.h"
+//#include <Wire.h>
+#include "stdio.h"
+#include "stdint.h"
 #include "SparkFunBQ27441/SparkFunBQ27441.h"
 #include "SparkFunBQ27441/BQ27441_Definitions.h"
 
@@ -35,7 +37,7 @@ bool BQ27441::begin(void)
 {
 	uint16_t deviceID = 0;
 	
-	Wire.begin(); // Initialize I2C master
+	//Wire.begin(); // Initialize I2C master
 	
 	deviceID = deviceType(); // Read deviceType from BQ27441
 	
@@ -253,8 +255,8 @@ uint8_t BQ27441::SOC1ClearThreshold(void)
 bool BQ27441::setSOC1Thresholds(uint8_t set, uint8_t clear)
 {
 	uint8_t thresholds[2];
-	thresholds[0] = constrain(set, 0, 100);
-	thresholds[1] = constrain(clear, 0, 100);
+	//thresholds[0] = constrain(set, 0, 100);
+	//thresholds[1] = constrain(clear, 0, 100);
 	return writeExtendedData(BQ27441_ID_DISCHARGE, 0, thresholds, 2);
 }
 
@@ -274,8 +276,8 @@ uint8_t BQ27441::SOCFClearThreshold(void)
 bool BQ27441::setSOCFThresholds(uint8_t set, uint8_t clear)
 {
 	uint8_t thresholds[2];
-	thresholds[0] = constrain(set, 0, 100);
-	thresholds[1] = constrain(clear, 0, 100);
+	//thresholds[0] = constrain(set, 0, 100);
+	//thresholds[1] = constrain(clear, 0, 100);
 	return writeExtendedData(BQ27441_ID_DISCHARGE, 2, thresholds, 2);
 }
 
@@ -305,8 +307,8 @@ uint8_t BQ27441::sociDelta(void)
 // Set the SOC_INT interval delta to a value between 1 and 100
 bool BQ27441::setSOCIDelta(uint8_t delta)
 {
-	uint8_t soci = constrain(delta, 0, 100);
-	return writeExtendedData(BQ27441_ID_STATE, 26, &soci, 1);
+	//uint8_t soci = constrain(delta, 0, 100);
+	//return writeExtendedData(BQ27441_ID_STATE, 26, &soci, 1);
 }
 
 // Pulse the GPOUT pin - must be in SOC_INT mode
@@ -341,7 +343,7 @@ bool BQ27441::enterConfig(bool userControl)
 	{
 		int16_t timeout = BQ72441_I2C_TIMEOUT;
 		while ((timeout--) && (!(flags() & BQ27441_FLAG_CFGUPMODE)))
-			delay(1);
+			//delay(1);
 		
 		if (timeout > 0)
 			return true;
@@ -366,7 +368,7 @@ bool BQ27441::exitConfig(bool resim)
 		{
 			int16_t timeout = BQ72441_I2C_TIMEOUT;
 			while ((timeout--) && ((flags() & BQ27441_FLAG_CFGUPMODE)))
-				delay(1);
+				//delay(1);
 			if (timeout > 0)
 			{
 				if (_sealFlag) seal(); // Seal back up if we IC was sealed coming in
@@ -620,15 +622,15 @@ bool BQ27441::writeExtendedData(uint8_t classID, uint8_t offset, uint8_t * data,
 int16_t BQ27441::i2cReadBytes(uint8_t subAddress, uint8_t * dest, uint8_t count)
 {
 	int16_t timeout = BQ72441_I2C_TIMEOUT;	
-	Wire.beginTransmission(_deviceAddress);
-	Wire.write(subAddress);
-	Wire.endTransmission(true);
+	//Wire.beginTransmission(_deviceAddress);
+	//Wire.write(subAddress);
+	//Wire.endTransmission(true);
 	
-	Wire.requestFrom(_deviceAddress, count);
+	//Wire.requestFrom(_deviceAddress, count);
 	
 	for (int i=0; i<count; i++)
 	{
-		dest[i] = Wire.read();
+		//dest[i] = Wire.read();
 	}
 	
 	return timeout;
@@ -637,13 +639,13 @@ int16_t BQ27441::i2cReadBytes(uint8_t subAddress, uint8_t * dest, uint8_t count)
 // Write a specified number of bytes over I2C to a given subAddress
 uint16_t BQ27441::i2cWriteBytes(uint8_t subAddress, uint8_t * src, uint8_t count)
 {
-	Wire.beginTransmission(_deviceAddress);
-	Wire.write(subAddress);
+	//Wire.beginTransmission(_deviceAddress);
+	//Wire.write(subAddress);
 	for (int i=0; i<count; i++)
 	{
-		Wire.write(src[i]);
+		//Wire.write(src[i]);
 	}	
-	Wire.endTransmission(true);
+	//Wire.endTransmission(true);
 	
 	return true;	
 }
