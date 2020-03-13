@@ -72,6 +72,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\tvitanov\source\repos\BatteryBabysitter\include\models;C:\Users\tvitanov\source\repos\BatteryBabysitter\include\headers;C:\Users\tvitanov\source\repos\BatteryBabysitter\include\external class;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -151,7 +152,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BatteryBabysitter.cpp" />
+    <ClCompile Include="include\models\Battery.cpp" />
+    <ClCompile Include="Orchestration.cpp" />
+    <ClCompile Include="include\external class\SparkFunBQ27441.cpp" />
+    <ClCompile Include="include\external class\SparkFunBQ27441\SparkFunBQ27441.cpp" />
+    <ClCompile Include="include\external class\SparkFun_BQ27441\SparkFunBQ27441.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\models\Battery.h" />
+    <ClInclude Include="include\headers\BQ27441_Definitions.h" />
+    <ClInclude Include="include\headers\SparkFunBQ27441.h" />
+    <ClInclude Include="include\headers\SparkFunBQ27441\BQ27441_Definitions.h" />
+    <ClInclude Include="include\headers\SparkFunBQ27441\SparkFunBQ27441.h" />
+    <ClInclude Include="include\headers\SparkFun_BQ27441\BQ27441_Definitions.h" />
+    <ClInclude Include="include\headers\SparkFun_BQ27441\SparkFunBQ27441.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
