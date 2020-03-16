@@ -8,6 +8,8 @@ int main()
 {
 	Battery battery = Battery();
 	battery.init();
+	battery.config.setMonitoringProtocol(BATTERY_LOW);
+	battery.capacity.setCapacity(12000);
 
 }
 
